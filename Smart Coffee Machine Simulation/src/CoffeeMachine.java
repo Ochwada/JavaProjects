@@ -68,6 +68,10 @@ public class CoffeeMachine {
 
         System.out.println("Brewing "+ type + " ("+ sizeInMl + "ml " + withMilkVar+ ")...");
     }
+    public void brewCoffee (int id, String type, int size, Boolean hasMilk, String status, double price, String addOns) {
+        System.out.println("The price of "+ type + " is: " + price);
+
+    }
 
     // --------------------------- ---------------------------  ---------------------------
     // --------------------------- Value vs Reference Demonstration -----------------------
@@ -122,10 +126,16 @@ public class CoffeeMachine {
 
         System.out.println("UPDATE ORDER ID");
         coffeeMachine.updateOrderId(102);
+        System.out.println();
 
-        Order order0 = new Order(100 , "Espresso", 250, true, "null" );
+        Order order0 = new Order(100 , "Espresso", 250, true, "null", 1.55, "Vanilla" );
+        coffeeMachine.updateOrderStatus(order0);
         System.out.println();
         // Pass the Order object (reference type)
-        coffeeMachine.updateOrderStatus(order0);
+
+        //System.out.println("The price is of :  "+ type + "is: " + price);
+        coffeeMachine.brewCoffee(100 , "Espresso", 250, true, "null", 1.55, "Vanilla");
+
+
     }
 }

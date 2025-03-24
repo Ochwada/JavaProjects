@@ -12,13 +12,17 @@ public class Order {
     public Boolean hasMilk;
     public String status;
     public int id;
+    public double price;
+    public String addOns;
 
-    public Order(int id, String type, int size, Boolean hasMilk, String status) {
+    public Order(int id, String type, int size, Boolean hasMilk, String status, double price, String addOns) {
         this.id = id;
         this.type = type;
         this.size = size;
         this.hasMilk = hasMilk;
         this.status = status;
+        this.price = price;
+        this.addOns = addOns;
     }
 
 

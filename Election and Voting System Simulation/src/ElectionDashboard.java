@@ -9,8 +9,10 @@
 public class ElectionDashboard {
 
     public static boolean validateBallot(boolean filledCorrectly, boolean hasSignature){
-        return filledCorrectly && hasSignature ? true : false;
+        //helper method changing String to boolean
+        return BallotValidator.validateBallot(filledCorrectly, hasSignature).equals("Filled Correctly");
     }
+
 
     public static void main(String[] args) {
         // 1. Check voter eligibility

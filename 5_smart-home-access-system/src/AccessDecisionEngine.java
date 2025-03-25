@@ -10,7 +10,8 @@ public class AccessDecisionEngine {
     public static String canEnter(boolean hasKeycard, boolean faceRecognized, boolean isEmergency) {
 
         return (isEmergency) ? "Emergency Override: Entry Granted" :
-                (hasKeycard && faceRecognized) ? "Access Granted " : "Access Denied";
+                canEnter(hasKeycard, faceRecognized);
+                //(hasKeycard && faceRecognized) ? "Access Granted " : "Access Denied";
 
 
     }

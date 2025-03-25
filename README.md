@@ -55,7 +55,7 @@ Each project is organized in its own directory, and some may include additional 
    ```
 2. Navigate to the repository:
    ```bash
-   cd java-projects/ProjectName1
+   cd java-projects/ProjectName1/src
    ```
 3. Compile and run the project:
    ```bash

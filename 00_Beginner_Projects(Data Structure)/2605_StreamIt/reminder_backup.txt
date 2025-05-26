@@ -1,0 +1,2 @@
+Hey Future Java Rockstars,
+Remember to close your streams and buffer your dreams!

@@ -72,9 +72,24 @@ public class App {
 
         );
         // Printing all tasks using a stream
-        descriptions
-                .forEach(System.out::println);
+        descriptions.forEach(System.out::println);
 
+        /**
+         * print descriptions*/
+        System.out.println();
+        //processor.processTask(pendingTasks, System.out::println);
+        processor.processTask(pendingTasks, t -> System.out.println("TODO: " + t.getDescription()));
+
+
+        /**
+         * print the list descriptions as it is
+         * */
+        System.out.println();
+        System.out.println(descriptions);
+
+        /**
+         * An example explanation
+        **/
         System.out.println();
         System.out.println("Concert Int to String - An example explanation");
         // Conversing numbers to Strings

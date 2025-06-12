@@ -2,6 +2,7 @@ package com.task_manager;
 
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -114,6 +115,44 @@ public class TaskProcessor {
                 .stream()
                 .map(mapper)
                 .collect(Collectors.toList());
+
+    }
+
+
+    /**
+     * Processes each task in the provided list by applying a specified action.
+     *
+     * <p>
+     * This method accepts a list of {@link Task} objects and a {@link Consumer} functional interface
+     * that defines an action to be performed on each task.
+     * The action can represent any operation such as:
+     * </p>
+     *
+     * <ul>
+     *   <li>Printing task details: {@code task -> System.out.println(task)}</li>
+     *   <li>Logging tasks: {@code task -> logger.info(task.toString())}</li>
+     *   <li>Updating task fields: {@code task -> task.markAsCompleted()}</li>
+     *   <li>Sending tasks to external systems or services</li>
+     * </ul>
+     *
+     * <p>
+     * Example usage:
+     * </p>
+     *
+     * <pre>{@code
+     * // Print all task descriptions
+     * processor.processTask(tasks, task -> System.out.println(task.getDescription()));
+     *
+     * // Mark all tasks as completed
+     * processor.processTask(tasks, task -> task.setCompleted(true));
+     * }</pre>
+     *
+     * @param tasks  the list of tasks to process; must not be {@code null}.
+     * @param action the action to be applied to each task; must not be {@code null}.
+     * @throws NullPointerException if {@code tasks} or {@code action} is {@code null}.
+     */
+    public void processTask(List<Task> tasks, Consumer<Task> action){
+        tasks.forEach(action);
 
     }
 

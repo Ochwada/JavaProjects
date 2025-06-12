@@ -58,6 +58,7 @@ public class HabitProcessorTest {
 // TESTS
 // -----------------------------------------------------
 
+
     @Test
     @DisplayName("Test that the mapHabit() returns a list of names")
     public void mapHabitTest() {
@@ -75,7 +76,8 @@ public class HabitProcessorTest {
     @Test
     @DisplayName("Test that filterHabits() returns only incomplete habits")
     void filterHabitsTest() {
-        List<Habit> incompleteHabits = processor.filterHabits(habits, habit -> !habit.isCompletedToday());
+        List<Habit> incompleteHabits = processor.filterHabits(
+                habits, habit -> !habit.isCompletedToday());
 
         assertNotNull(incompleteHabits);
         assertEquals(2, incompleteHabits.size());
@@ -86,6 +88,7 @@ public class HabitProcessorTest {
     @DisplayName("Test that processHabits() performs an action (StringBuilder accumulation)")
     void processHabitsTest() {
         StringBuilder log = new StringBuilder();
+
         processor.processHabits(habits, habit -> log.append(habit.getName()).append(", "));
 
         String result = log.toString();

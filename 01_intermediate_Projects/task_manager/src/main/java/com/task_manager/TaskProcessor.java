@@ -2,6 +2,7 @@ package com.task_manager;
 
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -60,9 +61,13 @@ public class TaskProcessor {
          *    → Convert the Stream back to a List.
          */
 
-        if (tasks == null || condition == null) {
+        if (condition == null) {
             throw new NullPointerException("Tasks list and condition predicate must not be null");
+        } else if (tasks == null) {
+            System.out.println("No tasks in the List");
         }
+
+        assert tasks != null;
 
         return tasks.stream()
                 .filter(condition)
@@ -70,5 +75,48 @@ public class TaskProcessor {
 
 
     }
+
+    /**
+     * Transforms a list of tasks into a list of strings using a provided mapping function.
+     *
+     * <p>
+     * This method applies the provided {@link Function} to each {@link Task} object in the input list,
+     * producing a new list containing the resulting string values.
+     * </p>
+     *
+     * <p>
+     * The mapping function defines how each {@code Task} should be transformed into a {@code String}.
+     * This allows for flexible extraction of different task properties such as:
+     * </p>
+     *
+     * <ul>
+     *   <li>Task descriptions: {@code Task::getDescription}</li>
+     *   <li>Task priorities as string: {@code task -> String.valueOf(task.getPriority())}</li>
+     *   <li>Custom string formats: {@code task -> task.getDescription() + " (Priority: " + task.getPriority() + ")"}</li>
+     * </ul>
+     *
+     * <p>
+     * Example usage:
+     * </p>
+     *
+     * <pre>{@code
+     * List<String> descriptions = processor.mapTasks(tasks, Task::getDescription);
+     * }</pre>
+     *
+     * @param tasks  the list of tasks to be transformed; must not be {@code null}.
+     * @param mapper the mapping function that converts each task into a string; must not be {@code null}.
+     * @return a list of strings produced by applying the mapper to each task in the input list.
+     * @throws NullPointerException if {@code tasks} or {@code mapper} is {@code null}.
+     */
+
+    public List<String> mapTasks(List<Task> tasks, Function<Task, String> mapper) {
+        return tasks
+                .stream()
+                .map(mapper)
+                .collect(Collectors.toList());
+
+    }
+
+
 }
 

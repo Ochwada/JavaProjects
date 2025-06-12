@@ -7,13 +7,14 @@ package com.task_manager;
  * File: Task.java
  * Author: Ochwada
  * Date: Thursday, 12.Jun.2025, 9:38 AM
- * Description: Represents a Task in a task management system
+ * Description: Represents a Task in a task management system (domain modelling)
  * Objective:
  * *******************************************************
  */
 
 
 public class Task {
+    // Fields or Variables or Properties
     private final String description;
     private final boolean isCompleted;
     private final int priority;

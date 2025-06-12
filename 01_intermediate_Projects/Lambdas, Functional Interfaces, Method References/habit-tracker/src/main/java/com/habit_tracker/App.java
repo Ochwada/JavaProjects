@@ -21,9 +21,12 @@ public class App {
                 new Habit("Drink water", true, "Health"),
                 new Habit("Morning run", false, "Fitness"),
                 new Habit("Meditation", false, "Mindfulness"),
-                new Habit("Sleep 8 hours", true, "Health")
+                new Habit("Sleep 8 hours", true, "Health"),
+                new Habit("Call family", true, "Social")
         );
 
+        // ---------------------------------------------
+        //1. Test filterHabits: only incomplete habits
         /**
          * Use HabitProcessor's filterHabits() method to filter habits that are not done.
          * The lambda expression: habit -> !habit.isCompletedToday().
@@ -38,17 +41,35 @@ public class App {
                 habits, Habit::isCompletedToday
         );
 
+        System.out.println("\n----Incomplete Habits -----");
         // Option 1: Print all pending habits using stream
-        processor.processHabits(pendingHabits,
-                habit -> System.out.println("Don't forget: " + habit));
+        /* processor.processHabits(pendingHabits,
+                habit -> System.out.println("Don't forget: " + habit));*/
 
         // Option 2: Print all pending habits using stream
-        System.out.println();
+
         processor.processHabits(pendingHabits,
                 habit -> System.out.println("Don't forget: [" + habit.getName() + "]"));
 
+        // ---------------------------------------------
+        //2. Test mapHabits: return list of names
+        List<String> allHabits = processor.mapHabits(habits, Habit::getName);
+        System.out.println("\n--- All Habits ---");
+        allHabits.forEach(System.out::println);
 
-        System.out.println();
+        // ---------------------------------------------
+        //3. Test processHabits: accumulate names into StringBuilder
+        StringBuilder accumulateNames = new StringBuilder();
+
+        processor.processHabits(habits,
+                habit -> accumulateNames.append(habit.getName()).append(" | "));
+
+        System.out.println("\n* Accumulate Names output *");
+        System.out.println(accumulateNames);
+
+        // ---------------------------------------------
+        //OTHERS. Test filterHabits: only COMPLETED habits
+        System.out.println("\n=== Other outputs ===");
         // Option 1: Print all DONE habits using stream
         processor.processHabits(doneHabits,
                 habit -> System.out.println("✅ Done: " + habit));

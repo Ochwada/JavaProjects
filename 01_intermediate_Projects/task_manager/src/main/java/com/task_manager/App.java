@@ -10,7 +10,6 @@ public class App {
         // Create an instance of TaskProcessor to access filtering functionality.
         TaskProcessor processor = new TaskProcessor();
 
-
         /**
          * Create a list of Task objects.
          *
@@ -25,7 +24,6 @@ public class App {
                 new Task("Pay for Bafog", false, 3)
         );
 
-
         /**
          * 3️Use TaskProcessor's filterTasks() method to filter tasks that are not completed.
          * The lambda expression: task -> !task.isCompleted()
@@ -36,9 +34,19 @@ public class App {
         List<Task> pendingTasks = processor.filterTasks(
                 tasks,
                 task -> !task.isCompleted());
-//        {
-//            // other logics
-//            return !task.isCompleted());
-//        }
+        // Or
+        //        {
+        //            // other logics
+        //            return !task.isCompleted());
+        //        }
+
+        // Printing all tasks using a stream
+        pendingTasks
+                .stream()
+                .forEach(
+                        // System.out::println
+                        task -> System.out.println("Task -> " + task.getDescription()) // or System.out::println
+                );
+
     }
 }

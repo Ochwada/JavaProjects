@@ -7,7 +7,6 @@
 
 # files
 *.iml
-*.xml
 
 target/
 !.mvn/wrapper/maven-wrapper.jar

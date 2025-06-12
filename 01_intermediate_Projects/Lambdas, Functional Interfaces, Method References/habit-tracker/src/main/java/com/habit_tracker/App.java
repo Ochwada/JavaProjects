@@ -34,13 +34,28 @@ public class App {
                 habits, habit -> !habit.isCompletedToday()
         );
 
-        // Option 1: Print all habits using stream
-        processor.processHabits(pendingHabits,
-                habit -> System.out.println("Don't forget: " + habit ));
+        List<Habit> doneHabits = processor.filterHabits(
+                habits, Habit::isCompletedToday
+        );
 
-        // Option 2: Print all habits using stream
+        // Option 1: Print all pending habits using stream
+        processor.processHabits(pendingHabits,
+                habit -> System.out.println("Don't forget: " + habit));
+
+        // Option 2: Print all pending habits using stream
         System.out.println();
         processor.processHabits(pendingHabits,
                 habit -> System.out.println("Don't forget: [" + habit.getName() + "]"));
+
+
+        System.out.println();
+        // Option 1: Print all DONE habits using stream
+        processor.processHabits(doneHabits,
+                habit -> System.out.println("✅ Done: " + habit));
+
+        // Option 2: Print all Done habits using stream
+        System.out.println();
+        processor.processHabits(doneHabits,
+                habit -> System.out.println("✅ Done: [" + habit.getName() + "]"));
     }
 }

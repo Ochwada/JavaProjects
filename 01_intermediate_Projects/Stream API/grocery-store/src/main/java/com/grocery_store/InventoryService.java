@@ -1,8 +1,10 @@
 package com.grocery_store;
 
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -87,6 +89,34 @@ public class InventoryService {
         return inventory.stream() // Convert list into Stream
                 .map(p -> p.getPrice() * p.getQuantity()) // Intermediate: For each product, calculate how much money it's worth
                 .reduce(0.0, Double::sum); // Terminal: sum all values, starting from 0.0
+
+    }
+
+    /**
+     * Finds the product with the highest price in the inventory.
+     * <p>
+     * This method uses Java Stream API's {@code max()} operation combined with
+     * a {@code Comparator} to determine the most expensive product.
+     * <p>
+     * Since the inventory may be empty, the result is wrapped inside an {@code Optional<Product>}:
+     * - If the inventory contains products, the Optional will contain the most expensive product.
+     * - If the inventory is empty, the Optional will be empty.
+     * <p>
+     * Using {@code Optional} helps prevent {@code NullPointerException} and forces
+     * the caller to explicitly handle both cases (present or empty).
+     * <p>
+     * Example usage:
+     * <pre>{@code
+     * Optional<Product> result = findMostExpensive(inventory);
+     * result.ifPresent(product -> System.out.println(product));
+     * }</pre>
+     *
+     * @param inventory the list of products to search
+     * @return an Optional containing the most expensive product, or empty if the inventory is empty
+     */
+    public Optional<Product> findMostExpensive(List<Product> inventory) {
+        return inventory.stream()
+                .max(Comparator.comparing(Product::getPrice));
 
     }
 }

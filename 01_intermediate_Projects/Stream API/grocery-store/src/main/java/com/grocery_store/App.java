@@ -1,7 +1,7 @@
 package com.grocery_store;
 
 /**
- * Hello world!
+ * Demo class
  *
  */
 public class App 

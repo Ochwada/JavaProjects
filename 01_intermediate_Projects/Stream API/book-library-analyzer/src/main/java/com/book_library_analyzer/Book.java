@@ -34,14 +34,31 @@ public class Book {
     }
 
     // Getters
+
+
+    /**
+     * Returns the book's title.
+     *
+     * @return the title.
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Returns the book's genre.
+     *
+     * @return the genre.
+     */
     public String getGenre() {
         return genre;
     }
 
+    /**
+     * Returns the book's rating.
+     *
+     * @return the rating.
+     */
     public double getRating() {
         return rating;
     }

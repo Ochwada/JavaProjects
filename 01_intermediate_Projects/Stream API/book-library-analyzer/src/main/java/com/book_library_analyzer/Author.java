@@ -31,10 +31,21 @@ public class Author {
     }
 
     // Setter
+    /**
+     * Returns the author's name.
+     *
+     * @return the author's name.
+     */
     public String getName() {
         return name;
     }
 
+
+    /**
+     * Returns the list of books written by the author.
+     *
+     * @return the list of books.
+     */
     public List<Book> getBooks() {
         return books;
     }

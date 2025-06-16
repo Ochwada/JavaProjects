@@ -78,5 +78,19 @@ public class LibraryAnalyzer {
                 );
     }
 
+    /**
+     * Uses a custom collector to summarize genre statistics.
+     *
+     * <p>This method processes a list of {@link Book} objects and collects statistics
+     * (such as total count and average rating) for each genre using the {@link GenreSummaryCollector}.
+     *
+     * @param books the list of {@link Book} objects to summarize
+     * @return a map where the key is the genre name and the value is the {@link GenreSummary} containing count and total rating
+     */
+
+    public Map<String, GenreSummary> summarizeGenres(List<Book> books) {
+        return books.stream()
+                .collect(new GenreSummaryCollector());
+    }
 
 }

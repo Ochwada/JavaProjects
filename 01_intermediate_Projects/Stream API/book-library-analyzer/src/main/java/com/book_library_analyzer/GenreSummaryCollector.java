@@ -61,16 +61,16 @@ public class GenreSummaryCollector implements Collector<
         };
     }
 
- /**
-  * Merges two partial result containers during parallel stream processing.
-  *
-  * <p>This method merges two {@code Map<String, GenreSummary>} instances by iterating
-  * over all entries of the second map and updating the corresponding entries in the first map.
-  * If a genre exists in both maps, their {@link GenreSummary} objects are combined
-  * by summing up both their total ratings and their counts.
-  *
-  * @return a {@link BinaryOperator} that merges two partial result maps into one.
-  */
+    /**
+     * Merges two partial result containers during parallel stream processing.
+     *
+     * <p>This method merges two {@code Map<String, GenreSummary>} instances by iterating
+     * over all entries of the second map and updating the corresponding entries in the first map.
+     * If a genre exists in both maps, their {@link GenreSummary} objects are combined
+     * by summing up both their total ratings and their counts.
+     *
+     * @return a {@link BinaryOperator} that merges two partial result maps into one.
+     */
     @Override
     public BinaryOperator<Map<String, GenreSummary>> combiner() {
         return (map1, map2) -> {
@@ -88,20 +88,33 @@ public class GenreSummaryCollector implements Collector<
     /**
      * Performs the final transformation of the accumulated result.
      *
-     * @return a function that simply returns the accumulated map (identity finisher).
+     * <p>Since the accumulator type {@code Map<String, GenreSummary>} is the same as the result type,
+     * this collector uses the identity finisher, which means no further transformation is needed.
+     * The accumulated map is returned as-is.
+     *
+     * @return a {@link Function} that returns the accumulated map without any modification.
      */
     @Override
     public Function<Map<String, GenreSummary>, Map<String, GenreSummary>> finisher() {
-        return null;
+        return Function.identity(); // Just return the map as it is
     }
 
     /**
      * Defines the characteristics of this collector.
      *
-     * @return a set of characteristics; for now, returns an empty set.
+     * <p>This collector declares {@code Characteristics.IDENTITY_FINISH}, indicating that the finisher function
+     * is simply the identity function (i.e., no additional transformation is required after accumulation).
+     *
+     * <p>No other characteristics (e.g., CONCURRENT, UNORDERED) are declared because:
+     * <ul>
+     *   <li>The collector is not thread-safe for concurrent modifications.</li>
+     *   <li>The ordering of elements may be important depending on the use case.</li>
+     * </ul>
+     *
+     * @return a set containing {@link Characteristics#IDENTITY_FINISH}.
      */
     @Override
     public Set<Characteristics> characteristics() {
-        return Set.of();
+        return Set.of(Characteristics.IDENTITY_FINISH);
     }
 }

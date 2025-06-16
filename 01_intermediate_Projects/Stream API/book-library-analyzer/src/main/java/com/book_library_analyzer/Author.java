@@ -25,7 +25,7 @@ public class Author {
      * @param books the list of Book objects written by the author.
      * @param name  the name of the author.
      */
-    public Author(List<Book> books, String name) {
+    public Author(String name, List<Book> books) {
         this.books = books;
         this.name = name;
     }

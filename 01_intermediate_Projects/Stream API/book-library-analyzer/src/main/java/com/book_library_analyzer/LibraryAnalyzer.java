@@ -56,9 +56,27 @@ public class LibraryAnalyzer {
                                 Collectors.counting()
                         )
                 );
-
     }
 
-    
+
+    /**
+     * Calculates the average rating of books for each genre.
+     * <p>
+     * This method processes the provided list of books, groups them by genre,
+     * and computes the average rating for each genre using streams and collectors.
+     *
+     * @param books the list of Book objects to be processed
+     * @return a map where the key is the genre, and the value is the average rating of books in that genre
+     */
+    public Map<String, Double> averageRatingByGenre(List<Book> books) {
+        return books.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                Book::getGenre, // groups books by genre.
+                                Collectors.averagingDouble(Book::getRating) // calculates average rating for each group.
+                        )
+                );
+    }
+
 
 }

@@ -25,11 +25,12 @@ import java.util.stream.Collector;
  * -The value is a GenreSummary object, which stores the count and total rating for that genre.
  * Intended for use with Java Streams to perform aggregation logic while grouping books by genre.
  */
-public class GenreSummaryCollector implements Collector<
-        Book, // Element type being collected
-        Map<String, GenreSummary>, // Mutable accumulation type (intermediate result container)
-        Map<String, GenreSummary>  // Final result type
-        > {
+public class GenreSummaryCollector
+        implements Collector <
+                Book, // Element type being collected (T)
+                Map<String, GenreSummary>, // Mutable accumulation type (intermediate result container)
+                Map<String, GenreSummary>  // Final result type
+                > {
 
     /**
      * Provides a new empty result container for the accumulation process.

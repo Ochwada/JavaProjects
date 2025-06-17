@@ -1,4 +1,7 @@
-package com.example;
+package com.example.service;
+
+
+import com.example.model.*;
 
 
 import java.util.*;
@@ -95,7 +98,23 @@ public class SystemAnalyzer {
     }
 
     // ------------------------------------------------
-    // Exercise 2: Group Products by Category
+    // Exercise 3: Count Items by Status
     // ------------------------------------------------
+
+    /**
+     * Counts the number of tasks for each status.
+     * <p>
+     * This method groups tasks based on their {@link Status} and counts how many tasks exist in each status.
+     * The result is a map where the key is the {@link Status}, and the value is the count of tasks for that status.
+     *
+     * @param tasks the list of tasks to count
+     * @return a map containing the count of tasks for each status
+     */
+    public static Map<Status, Long> countItemsByStatus(List<Task> tasks) {
+        return tasks.stream()
+                .collect(Collectors.groupingBy(
+                        Task::getStatus,
+                        Collectors.counting()));
+    }
 
 }

@@ -18,7 +18,11 @@ public class App
         // ------------------------------------------------
         List<Product> products = DummyProducts.getSampleProducts();
         Map<String, Long> grouped = SystemAnalyzer.groupProductsByCategory(products);
+        Map<String, List<Product>> grouped2 = SystemAnalyzer.groupProductsByCategoryListProducts(products);
+        Map<String, List<String>> groupedMapping = SystemAnalyzer.groupProductsByCategoryAndMap(products);
         System.out.println("Group products: " + grouped);
+        //System.out.println("Group2 products: " + grouped2);
+        System.out.println("Group & Mapped products: " + groupedMapping);
 
         // ------------------------------------------------
         // Exercise 1: Flatten Sentences into Words

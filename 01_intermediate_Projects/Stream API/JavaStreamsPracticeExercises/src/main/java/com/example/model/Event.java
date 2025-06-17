@@ -3,6 +3,7 @@ package com.example.model;
 
 import com.example.service.IdGenerator;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
 /**
@@ -50,6 +51,9 @@ public class Event {
         this.location = location;
     }
 
+
+
+    // Getters
     public String getId() {
         return id;
     }
@@ -65,6 +69,9 @@ public class Event {
     public LocalDateTime getStartDateTime() {
         return startDateTime;
     }
+//    public DayOfWeek getDayOfWeek(){
+//        return startDateTime.getDayOfWeek();
+//    }
 
     public LocalDateTime getEndDateTime() {
         return endDateTime;

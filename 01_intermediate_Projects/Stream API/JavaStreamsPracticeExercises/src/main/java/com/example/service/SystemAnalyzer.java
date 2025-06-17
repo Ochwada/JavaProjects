@@ -25,7 +25,30 @@ public class SystemAnalyzer {
     // ------------------------------------------------
     //  Exercise 7: Group Events by Day of Week
     // ------------------------------------------------
-
+    /**
+     * Groups events by the day of the week based on their start date and time.
+     * <p>
+     * This method processes a list of {@link Event} objects, extracts the {@link java.time.DayOfWeek}
+     * from each event's start date, and groups event names under the corresponding day.
+     * <p>
+     * The result is a map where:
+     * <ul>
+     *     <li>The key is the day of the week (e.g. "MONDAY", "TUESDAY") as a {@code String}.</li>
+     *     <li>The value is a list of event names occurring on that day.</li>
+     * </ul>
+     * <p>
+     * This is useful for reporting, scheduling analysis, and time-based filtering.
+     *
+     * @param events the list of {@link Event} objects to be grouped
+     * @return a {@link Map} where keys are days of the week and values are lists of event names
+     */
+    public static Map<String, List<String>> groupEventByDayOfWeek(List<Event> events) {
+        return events.stream()
+                .collect(Collectors.groupingBy(
+                        event -> event.getStartDateTime().getDayOfWeek().toString(),
+                        Collectors.mapping(Event::getName, Collectors.toList())
+                ));
+    }
 
     // ------------------------------------------------
     //  Exercise 6: Flatten Author → Books → Pages

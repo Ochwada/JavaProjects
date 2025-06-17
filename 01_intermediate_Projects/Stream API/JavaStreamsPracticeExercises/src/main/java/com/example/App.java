@@ -17,6 +17,16 @@ public class App {
 
 
         // ------------------------------------------------
+        //   Exercise 7: Group Events by Day of Week
+        // ------------------------------------------------
+        List<Event> events = DummyData.getSampleEvents();
+        Map<String, List<String>> groupEvents = SystemAnalyzer.groupEventByDayOfWeek(events);
+
+        groupEvents.forEach((day, eventsList) ->{
+            System.out.printf("Day: %s  | Events: %s%n", day, eventsList);
+        });
+        System.out.println();
+        // ------------------------------------------------
         //  Exercise 6: Flatten Author → Books → Pages
         // ------------------------------------------------
         List<Author> authors = DummyData.getSampleAuthors();

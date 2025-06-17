@@ -104,7 +104,7 @@ public class DummyData {
         // --- orwell
         Book book1 = new Book("1984", orwell, "Dystopian", 4.8,
                 List.of(
-                        "1984 - Page 1",
+                        "1984 - Page 1 - Table of Content",
                         "1984 - Page 2",
                         "1984 - Page 3"
                 ));

@@ -15,7 +15,14 @@ public class App {
     public static void main(String[] args) {
         System.out.println("\n\uD83D\uDC83 === Java Streams Practice Day! === \uD83D\uDC83");
 
-
+        // ------------------------------------------------
+        //   Exercise 8: Build Shopping Summary Collector
+        // ------------------------------------------------
+        List<Item> items = DummyData.getSampleItems();
+        ShoppingSummaryCollector.ShoppingSummary shoppingSummary = items.stream()
+                .collect(new ShoppingSummaryCollector());
+        System.out.println(shoppingSummary);
+        System.out.println();
         // ------------------------------------------------
         //   Exercise 7: Group Events by Day of Week
         // ------------------------------------------------

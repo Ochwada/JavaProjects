@@ -20,6 +20,15 @@ import java.util.*;
 
 public class DummyData {
 
+    public static  List<Item> getSampleItems(){
+        return List.of(
+                new Item("Laptop", 1200.0),
+                new Item("Phone", 800.0),
+                new Item("Headphones", 150.0),
+                new Item("Mouse", 50.0)
+        );
+    }
+
     /**
      * Generates a sample list of events for testing and demonstration purposes.
      * <p>

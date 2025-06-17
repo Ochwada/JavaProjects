@@ -85,11 +85,10 @@ public class ShoppingSummaryCollector
          */
         @Override
         public String toString() {
-            return "ShoppingSummary{" +
-                    "Cout=" + itemCount +
-                    ", Total Price=" + totalPrice +
-                    ", Avg Price" + getAveragePrice() +
-                    '}';
+            return "Shopping Summary:\n" +
+                    "[Count = " + itemCount + "\n" +
+                    "Total Price= € " + totalPrice + "\n" +
+                    "Avg Price = € " + getAveragePrice() + " ]";
         }
     }
 

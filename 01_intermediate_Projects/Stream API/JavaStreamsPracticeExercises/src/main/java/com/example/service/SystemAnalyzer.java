@@ -21,6 +21,47 @@ import java.util.stream.Collectors;
 
 public class SystemAnalyzer {
 
+    // ------------------------------------------------
+    //  Bonus: Department Employee Project Stats
+    // ------------------------------------------------
+
+    public static List<Employee> extractEmployeesFromProjects(List<Project> projects) {
+        return projects.stream()
+                .flatMap(project -> project.getMembers().stream())
+                .distinct() // to avoid duplicates if employees are assigned to multiple projects
+                .toList();
+    }
+
+    public static Map<String, Double> averageBudgetForActiveProjects(List<Employee> employees) {
+        return employees.stream()
+                .flatMap(employee -> employee.getProjects().stream())
+                .filter(p -> p.getStatus() == ProjectStatus.ACTIVE)
+                .collect(Collectors.groupingBy(
+                        p -> p.getStatus().toString(),
+                        Collectors.averagingDouble(Project::getBudget)
+                ));
+    }
+
+    /**
+     * Filters and groups all active (in-progress) projects by their status.
+     * <p>
+     * This method processes a list of {@link Project} instances, selects only those projects
+     * whose status is {@link ProjectStatus#ACTIVE}, and groups them into a map where:
+     * <ul>
+     *     <li>The key is the project status as a {@code String} (always "IN_PROGRESS" in this case).</li>
+     *     <li>The value is a list of project names assigned to that status.</li>
+     * </ul>
+     * @param projects the list of {@link Project} instances to process
+     * @return a map where the key is the status ("IN_PROGRESS") and the value is a list of project names
+     */
+    public static  Map<String, List<String>> accessAllActiveProjects(List<Project> projects){
+        return projects.stream()
+                .filter(p -> p.getStatus() == ProjectStatus.ACTIVE)
+                .collect(Collectors.groupingBy(
+                        p -> p.getStatus().toString(),
+                        Collectors.mapping(Project::getName, Collectors.toList())
+                ));
+    }
 
     // ------------------------------------------------
     //  Exercise 7: Group Events by Day of Week

@@ -17,6 +17,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class IdGenerator {
 
+    private static final AtomicInteger projectCounter = new AtomicInteger(1);
+    private static final AtomicInteger employeeCounter = new AtomicInteger(1);
     private static final AtomicInteger eventsCounter = new AtomicInteger(1);
     private static final AtomicInteger taskCounter = new AtomicInteger(1);
     private static final AtomicInteger movieCounter = new AtomicInteger(1);
@@ -24,6 +26,20 @@ public class IdGenerator {
     private static final AtomicInteger authorCounter = new AtomicInteger(1);
     private static final AtomicInteger bookCounter = new AtomicInteger(1);
 
+
+    /**
+     * Generates a new Event ID in format EM-xxxxx
+     */
+    public static String generateProjectId(){
+        return String.format("PROJ-%05d", projectCounter.getAndIncrement());
+    }
+
+    /**
+     * Generates a new Event ID in format EM-xxxxx
+     */
+    public static String generateEmployeeId(){
+        return String.format("EM-%05d", employeeCounter.getAndIncrement());
+    }
 
     /**
      * Generates a new Event ID in format EVENTxxx

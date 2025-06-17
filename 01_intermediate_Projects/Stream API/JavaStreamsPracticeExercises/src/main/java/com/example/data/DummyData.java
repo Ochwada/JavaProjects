@@ -20,7 +20,73 @@ import java.util.*;
 
 public class DummyData {
 
-    public static  List<Item> getSampleItems(){
+    /**
+     * Generates a sample list of projects for testing and demonstration purposes.
+     *
+     * @return a list of sample {@link Project} instances
+     */
+
+    public static List<Project> getSampleProjects() {
+        // Employees
+        Employee emp1 = new Employee(
+                "Alice Johnson", "alice@example.com", "Developer", "IT", List.of());
+        Employee emp2 = new Employee(
+                "Bob Smith", "bob@example.com", "QA Engineer", "IT", List.of());
+        Employee emp3 = new Employee(
+                "Carol White", "carol@example.com", "Project Manager", "PMO", List.of());
+        Employee emp4 = new Employee(
+                "David Brown", "david@example.com", "UI Designer", "Design", List.of());
+        Employee emp5 = new Employee(
+                "Eva Green", "eva@example.com", "Data Analyst", "Data Science", List.of());
+
+        //Projects
+        Project proj1 = new Project(
+
+                "Ardhi Platform",
+                "WebGIS system for geospatial analysis.",
+                ProjectStatus.ACTIVE,
+                150_000.0,
+                List.of(emp1, emp2, emp3)
+        );
+
+        Project proj2 = new Project(
+                "E-Commerce Portal",
+                "Online shop system with payment integration.",
+                ProjectStatus.PLANNED,
+                90_000.0,
+                List.of(emp1, emp4)
+        );
+
+        Project proj3 = new Project(
+                "AI Analytics Engine",
+                "Machine learning platform for customer insights.",
+                ProjectStatus.ACTIVE,
+                200_000.0,
+                List.of(emp3, emp5)
+        );
+
+        Project proj4 = new Project(
+                "HR Management System",
+                "Internal HR & payroll automation tool.",
+                ProjectStatus.COMPLETED,
+                50_000.0,
+                List.of(emp2, emp5)
+        );
+
+        return List.of(proj1, proj2, proj3, proj4);
+
+    }
+
+    /**
+     * Generates a sample list of shopping items for testing and demonstration purposes.
+     * <p>
+     * The dummy data includes several products with different price values.
+     * This data can be used for practicing custom collectors, price aggregation,
+     * or general stream processing on lists of {@link Item}.
+     *
+     * @return a list of sample {@link Item} instances
+     */
+    public static List<Item> getSampleItems() {
         return List.of(
                 new Item("Laptop", 1200.0),
                 new Item("Phone", 800.0),

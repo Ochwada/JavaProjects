@@ -16,6 +16,29 @@ public class App {
         System.out.println("\n\uD83D\uDC83 === Java Streams Practice Day! === \uD83D\uDC83");
 
         // ------------------------------------------------
+        //  Bonus: Department Employee Project Stats
+        // ------------------------------------------------
+        List<Project> projects = DummyData.getSampleProjects();
+        List<Employee> employees = SystemAnalyzer.extractEmployeesFromProjects(projects);
+
+//        Map<String, Double> allBudget =  SystemAnalyzer.averageBudgetForActiveProjects(projects);
+//        allBudget.forEach((status, projectList)-> {
+//            System.out.printf("Status: %s  | Project Count: %d  | Projects: %s%n", status, projectList.size(), projectList);
+//        });
+
+        // group projects by status and list project names
+        System.out.println();
+        Map<String, List<String>> allProjects =  SystemAnalyzer.accessAllActiveProjects(projects);
+        allProjects.forEach((status, projectList)-> {
+            System.out.printf("Status: %s  | Project Count: %d  | Projects: %s%n", status, projectList.size(), projectList);
+        });
+
+        // print all projects
+        projects.forEach(System.out::println);
+
+        System.out.println();
+
+        // ------------------------------------------------
         //   Exercise 8: Build Shopping Summary Collector
         // ------------------------------------------------
         List<Item> items = DummyData.getSampleItems();

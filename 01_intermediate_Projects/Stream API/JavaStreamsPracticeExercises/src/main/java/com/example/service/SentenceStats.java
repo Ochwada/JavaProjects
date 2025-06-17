@@ -15,7 +15,6 @@ import java.util.stream.Collector;
  * *******************************************************
  */
 
-
 // ------------------------------------------------
 // Exercise 5: Custom Collector - Sentence Stats
 // ------------------------------------------------
@@ -51,7 +50,7 @@ public class SentenceStats
          *
          * @param other the other Sentence to combine
          */
-        public void sentenceCombiner(Sentence other) {
+        public void combine(Sentence other) {
             this.sentenceCount += other.sentenceCount;
             this.wordCount += other.wordCount;
         }
@@ -110,7 +109,7 @@ public class SentenceStats
     @Override
     public BinaryOperator<Sentence> combiner() {
         return (s1, s2) -> {
-            s1.sentenceCombiner(s2);
+            s1.combine(s2);
             return s1;
         };
     }

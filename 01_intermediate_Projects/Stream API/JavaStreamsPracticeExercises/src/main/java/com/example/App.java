@@ -32,7 +32,7 @@ public class App {
         List<Author> authors = DummyData.getSampleAuthors();
         List<String> allPages = SystemAnalyzer.getAllPage(authors);
         allPages.forEach(System.out::println);
-
+        System.out.println();
         // ------------------------------------------------
         // Exercise 5: Custom Collector - Sentence Stats
         // ------------------------------------------------

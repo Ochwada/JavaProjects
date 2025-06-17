@@ -3,6 +3,7 @@ package com.example.data;
 
 import com.example.model.*;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -18,6 +19,67 @@ import java.util.*;
 
 
 public class DummyData {
+
+    /**
+     * Generates a sample list of events for testing and demonstration purposes.
+     * <p>
+     * Each event includes realistic data such as:
+     * <ul>
+     *     <li>Title and description</li>
+     *     <li>Start and end date/time</li>
+     *     <li>Category (Workshop, Conference, Meetup, Seminar)</li>
+     *     <li>Physical location represented by {@link Address}</li>
+     * </ul>
+     * <p>
+     * This dummy data can be used for practicing Java Streams operations such as filtering,
+     * grouping by category, sorting by date, and aggregating locations.
+     *
+     * @return a list of sample {@link Event} instances with diverse data.
+     */
+    public static List<Event> getSampleEvents() {
+        // Addresses
+        Address berlin = new Address("Hauptstr.", "11", "10115", "Berlin", "Germany");
+        Address munich = new Address("Marienplatz", "1", "80331", "Munich", "Germany");
+        Address hamburg = new Address("Reeperbahn", "22", "20359", "Hamburg", "Germany");
+        Address cologne = new Address("Domplatz", "3", "50667", "Cologne", "Germany");
+
+
+        return List.of(
+                new Event(
+                        "Java Streams Workshop",
+                        "Deep dive into Java Streams API.",
+                        LocalDateTime.of(2025, 7, 10, 10, 0),
+                        LocalDateTime.of(2025, 7, 10, 17, 0),
+                        "Workshop",
+                        berlin
+
+                ),
+                new Event(
+                        "Spring Boot Conference",
+                        "Microservices and Spring Boot best practices.",
+                        LocalDateTime.of(2025, 8, 12, 9, 30),
+                        LocalDateTime.of(2025, 8, 12, 18, 0),
+                        "Conference",
+                        munich
+                ),
+                new Event(
+                        "Data Science Meetup",
+                        "AI, Machine Learning, and Big Data trends.",
+                        LocalDateTime.of(2025, 9, 5, 14, 0),
+                        LocalDateTime.of(2025, 9, 5, 20, 0),
+                        "Meetup",
+                        hamburg
+                ),
+                new Event(
+                        "Cloud Computing Seminar",
+                        "Modern cloud architectures.",
+                        LocalDateTime.of(2025, 10, 3, 10, 0),
+                        LocalDateTime.of(2025, 10, 3, 15, 30),
+                        "Seminar",
+                        cologne
+                )
+        );
+    }
 
     /**
      * Generates a sample list of authors, each with associated books and pages.

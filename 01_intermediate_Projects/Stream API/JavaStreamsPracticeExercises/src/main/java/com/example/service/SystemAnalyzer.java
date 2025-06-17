@@ -23,25 +23,73 @@ public class SystemAnalyzer {
 
 
     // ------------------------------------------------
-    // Exercise 1: Flatten Sentences into Words
+    //  Exercise 7: Group Events by Day of Week
+    // ------------------------------------------------
+
+
+    // ------------------------------------------------
+    //  Exercise 6: Flatten Author → Books → Pages
     // ------------------------------------------------
 
     /**
-     * Flattens a list of sentences into a list of individual words.
+     * Extracts and flattens all pages from a list of authors into a single list of page contents.
      * <p>
-     * Given a list of strings where each string is a sentence, this method splits each sentence into words using space
-     * (" ") as the delimiter and returns a flat list containing all the words.
+     * Each author contains multiple books, and each book contains multiple pages.
+     * This method uses a three-level {@code flatMap()} to traverse:
+     * * Authors → Books → Pages
+     * and collect all individual pages across all authors into one flat list.
      *
-     * @param sentences the list of sentences to flatten
-     * @return a list of individual words
+     * @param authors the list of authors, each containing books and pages
+     * @return a flattened list containing all pages from all books by all authors
      */
-    public static List<String> flattenSentences(List<String> sentences) {
-        return sentences.stream()
-                .flatMap(word -> Arrays.stream(word.split(" ")))
-                .toList();
+    public static List<String> getAllPage(List<Author> authors) {
+        return authors.stream() // level 1: authors
+                .flatMap(author -> author.getBooks().stream()) // level 2: books
+                .flatMap(book -> book.getPages().stream())  // level 3: pages
+                .toList(); // collect all pages into list
+    }
+
+    // ------------------------------------------------
+    // Exercise 4: Average Rating by Genre
+    // ------------------------------------------------
+
+    /**
+     * Calculates the average movie rating for each genre.
+     * <p>
+     * This method groups movies by their genre and computes the average rating
+     * for each genre using Java Streams and built-in collectors.
+     *
+     * @param movies the list of movies to process
+     * @return a map where the key is the movie genre, and the value is the average rating for that genre
+     */
+    public static Map<String, Double> averageRatingByGenre(List<Movie> movies) {
+        return movies.stream()
+                .collect(Collectors.groupingBy(
+                        Movie::getGenre,
+                        Collectors.averagingDouble(Movie::getRating)
+                ));
 
     }
 
+    // ------------------------------------------------
+    // Exercise 3: Count Items by Status
+    // ------------------------------------------------
+
+    /**
+     * Counts the number of tasks for each status.
+     * <p>
+     * This method groups tasks based on their {@link Status} and counts how many tasks exist in each status.
+     * The result is a map where the key is the {@link Status}, and the value is the count of tasks for that status.
+     *
+     * @param tasks the list of tasks to count
+     * @return a map containing the count of tasks for each status
+     */
+    public static Map<Status, Long> countItemsByStatus(List<Task> tasks) {
+        return tasks.stream()
+                .collect(Collectors.groupingBy(
+                        Task::getStatus,
+                        Collectors.counting()));
+    }
     // ------------------------------------------------
     // Exercise 2: Group Products by Category
     // ------------------------------------------------
@@ -98,68 +146,21 @@ public class SystemAnalyzer {
     }
 
     // ------------------------------------------------
-    // Exercise 3: Count Items by Status
+    // Exercise 1: Flatten Sentences into Words
     // ------------------------------------------------
 
     /**
-     * Counts the number of tasks for each status.
+     * Flattens a list of sentences into a list of individual words.
      * <p>
-     * This method groups tasks based on their {@link Status} and counts how many tasks exist in each status.
-     * The result is a map where the key is the {@link Status}, and the value is the count of tasks for that status.
+     * Given a list of strings where each string is a sentence, this method splits each sentence into words using space
+     * (" ") as the delimiter and returns a flat list containing all the words.
      *
-     * @param tasks the list of tasks to count
-     * @return a map containing the count of tasks for each status
+     * @param sentences the list of sentences to flatten
+     * @return a list of individual words
      */
-    public static Map<Status, Long> countItemsByStatus(List<Task> tasks) {
-        return tasks.stream()
-                .collect(Collectors.groupingBy(
-                        Task::getStatus,
-                        Collectors.counting()));
+    public static List<String> flattenSentences(List<String> sentences) {
+        return sentences.stream()
+                .flatMap(word -> Arrays.stream(word.split(" ")))
+                .toList();
     }
-
-    // ------------------------------------------------
-    // Exercise 4: Average Rating by Genre
-    // ------------------------------------------------
-
-    /**
-     * Calculates the average movie rating for each genre.
-     * <p>
-     * This method groups movies by their genre and computes the average rating
-     * for each genre using Java Streams and built-in collectors.
-     *
-     * @param movies the list of movies to process
-     * @return a map where the key is the movie genre, and the value is the average rating for that genre
-     */
-    public static Map<String, Double> averageRatingByGenre(List<Movie> movies) {
-        return movies.stream()
-                .collect(Collectors.groupingBy(
-                        Movie::getGenre,
-                        Collectors.averagingDouble(Movie::getRating)
-                ));
-
-    }
-
-    // ------------------------------------------------
-    //  Exercise 6: Flatten Author → Books → Pages
-    // ------------------------------------------------
-
-    /**
-     * Extracts and flattens all pages from a list of authors into a single list of page contents.
-     * <p>
-     * Each author contains multiple books, and each book contains multiple pages.
-     * This method uses a three-level {@code flatMap()} to traverse:
-     * * Authors → Books → Pages
-     * and collect all individual pages across all authors into one flat list.
-     *
-     * @param authors the list of authors, each containing books and pages
-     * @return a flattened list containing all pages from all books by all authors
-     */
-    public static List<String> getAllPage(List<Author> authors) {
-        return authors.stream() // level 1: authors
-                .flatMap(author -> author.getBooks().stream()) // level 2: books
-                .flatMap(book -> book.getPages().stream())  // level 3: pages
-                .toList(); // collect all pages into list
-    }
-
-
 }

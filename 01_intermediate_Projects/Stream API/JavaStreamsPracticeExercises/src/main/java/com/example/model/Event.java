@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
  */
 
 
-public class Events {
+public class Event {
     // Field
     private final String id;
     private final String name;
@@ -40,7 +40,7 @@ public class Events {
      * @param category      the category of the event (e.g., Workshop, Conference, Webinar)
      * @param location      the physical address of the event
      */
-    public Events(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, String category, Address location) {
+    public Event(String name, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, String category, Address location) {
         this.id = IdGenerator.generateEventsId();
         this.name = name;
         this.description = description;

@@ -17,7 +17,30 @@ import java.util.*;
  */
 
 
-public class DummyProducts {
+public class DummyData {
+
+    /**
+     * Returns a sample list of sentences.
+     * <p>
+     * The sample data includes various example sentences to demonstrate stream processing
+     * and custom collector functionality.
+     *
+     * @return a list of sample sentences
+     */
+    public static List<String> getSampleSentences() {
+        return List.of(
+                "Java is powerful",
+                "Streams can be customized",
+                "Collectors are flexible",
+                "Custom collectors are advanced",
+                "Functional programming is expressive",
+                "Lambda expressions simplify code",
+                "Parallel streams enable performance",
+                "Collectors make aggregation easy",
+                "Custom collectors require careful design",
+                "Java Streams are great for data processing"
+        );
+    }
 
     /**
      * Returns a sample list of products.
@@ -49,7 +72,7 @@ public class DummyProducts {
      *
      * @return a list of sample {@link Task} instances
      */
-    public static List<Task> getSampleTask(){
+    public static List<Task> getSampleTask() {
         return List.of(
                 new Task("Write documentation", Status.PENDING),
                 new Task("Implement feature A", Status.IN_PROGRESS),
@@ -59,6 +82,26 @@ public class DummyProducts {
                 new Task("Refactor code", Status.IN_PROGRESS),
                 new Task("Review pull request", Status.COMPLETED),
                 new Task("Prepare demo", Status.PENDING)
+        );
+    }
+
+    /**
+     * Returns a sample list of movies.
+     *
+     * @return a list of sample {@link Movie} instances
+     */
+    public static List<Movie> getSampleMovies() {
+        return List.of(
+                new Movie("Inception", "Science Fiction", 8.8),
+                new Movie("The Matrix", "Science Fiction", 8.7),
+                new Movie("Interstellar", "Science Fiction", 8.6),
+                new Movie("The Godfather", "Crime", 9.2),
+                new Movie("Pulp Fiction", "Crime", 8.9),
+                new Movie("The Shawshank Redemption", "Drama", 9.3),
+                new Movie("Forrest Gump", "Drama", 8.8),
+                new Movie("Titanic", "Romance", 7.9),
+                new Movie("The Notebook", "Romance", 7.8),
+                new Movie("Avengers: Endgame", "Action", 8.4)
         );
     }
 

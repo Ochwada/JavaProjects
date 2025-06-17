@@ -117,4 +117,29 @@ public class SystemAnalyzer {
                         Collectors.counting()));
     }
 
+    // ------------------------------------------------
+    // Exercise 4: Average Rating by Genre
+    // ------------------------------------------------
+
+    /**
+     * Calculates the average movie rating for each genre.
+     * <p>
+     * This method groups movies by their genre and computes the average rating
+     * for each genre using Java Streams and built-in collectors.
+     *
+     * @param movies the list of movies to process
+     * @return a map where the key is the movie genre, and the value is the average rating for that genre
+     */
+    public static Map<String, Double> averageRatingByGenre(List<Movie> movies) {
+        return movies.stream()
+                .collect(Collectors.groupingBy(
+                        Movie::getGenre,
+                        Collectors.averagingDouble(Movie::getRating)
+                ));
+
+    }
+
+
+
+
 }

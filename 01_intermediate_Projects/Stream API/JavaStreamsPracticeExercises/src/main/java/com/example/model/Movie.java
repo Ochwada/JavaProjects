@@ -1,6 +1,8 @@
 package com.example.model;
 
 
+import com.example.service.IdGenerator;
+
 /**
  * *******************************************************
  * Package: com.example.model
@@ -15,6 +17,7 @@ package com.example.model;
 
 
 public class Movie {
+    private final String id;
     private final String name;
     private final String genre;
     private final double rating;
@@ -27,9 +30,19 @@ public class Movie {
      * @param rating the rating score of the movie (e.g., IMDb score)
      */
     public Movie(String name, String genre, double rating) {
+        this.id = IdGenerator.generateMovieId();
         this.name = name;
         this.genre = genre;
         this.rating = rating;
+    }
+
+    /**
+     * Returns the id of the movie.
+     *
+     * @return the movie id
+     */
+    public String getId() {
+        return id;
     }
 
     /**
@@ -67,6 +80,7 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
+                "id ='" + id + '\'' +
                 "name='" + name + '\'' +
                 ", genre='" + genre + '\'' +
                 ", rating=" + rating +

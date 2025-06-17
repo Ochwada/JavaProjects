@@ -139,7 +139,27 @@ public class SystemAnalyzer {
 
     }
 
+    // ------------------------------------------------
+    //  Exercise 6: Flatten Author → Books → Pages
+    // ------------------------------------------------
 
+    /**
+     * Extracts and flattens all pages from a list of authors into a single list of page contents.
+     * <p>
+     * Each author contains multiple books, and each book contains multiple pages.
+     * This method uses a three-level {@code flatMap()} to traverse:
+     * * Authors → Books → Pages
+     * and collect all individual pages across all authors into one flat list.
+     *
+     * @param authors the list of authors, each containing books and pages
+     * @return a flattened list containing all pages from all books by all authors
+     */
+    public static List<String> getAllPage(List<Author> authors) {
+        return authors.stream() // level 1: authors
+                .flatMap(author -> author.getBooks().stream()) // level 2: books
+                .flatMap(book -> book.getPages().stream())  // level 3: pages
+                .toList(); // collect all pages into list
+    }
 
 
 }

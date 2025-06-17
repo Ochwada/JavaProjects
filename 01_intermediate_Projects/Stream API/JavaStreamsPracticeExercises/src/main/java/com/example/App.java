@@ -2,8 +2,8 @@ package com.example;
 
 import com.example.data.*;
 import com.example.model.*;
-import com.example.service.SentenceStats;
-import com.example.service.SystemAnalyzer;
+import com.example.service.*;
+
 
 import java.util.*;
 
@@ -11,11 +11,18 @@ import java.util.*;
  * Entry point for the application.
  * Demo Class
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        System.out.println( "\n\uD83D\uDC83 === Java Streams Practice Day! === \uD83D\uDC83" );
+public class App {
+    public static void main(String[] args) {
+        System.out.println("\n\uD83D\uDC83 === Java Streams Practice Day! === \uD83D\uDC83");
+
+
+        // ------------------------------------------------
+        //  Exercise 6: Flatten Author → Books → Pages
+        // ------------------------------------------------
+        List<Author> authors = DummyData.getSampleAuthors();
+        List<String> allPages = SystemAnalyzer.getAllPage(authors);
+        allPages.forEach(System.out::println);
+
         // ------------------------------------------------
         // Exercise 5: Custom Collector - Sentence Stats
         // ------------------------------------------------
@@ -30,7 +37,7 @@ public class App
         System.out.println();
         List<Movie> movies = DummyData.getSampleMovies();
         Map<String, Double> averageRating = SystemAnalyzer.averageRatingByGenre(movies);
-        averageRating.forEach((genre, rating) ->{
+        averageRating.forEach((genre, rating) -> {
             System.out.printf(
                     "Genre: %s | Average Rating: %.2f%n", genre, rating
             );
@@ -50,10 +57,10 @@ public class App
         // ------------------------------------------------
         List<Product> products = DummyData.getSampleProducts();
         Map<String, Long> grouped = SystemAnalyzer.groupProductsByCategory(products);
-        //Map<String, List<Product>> grouped2 = SystemAnalyzer.groupProductsByCategoryListProducts(products);
+        Map<String, List<Product>> grouped2 = SystemAnalyzer.groupProductsByCategoryListProducts(products);
         Map<String, List<String>> groupedMapping = SystemAnalyzer.groupProductsByCategoryAndMap(products);
         System.out.println("\nGroup products: " + grouped);
-        //System.out.println("Group2 products: " + grouped2);
+        System.out.println("Group2 products: " + grouped2);
         System.out.println("\nGroup & Mapped products: " + groupedMapping);
 
 
@@ -65,7 +72,6 @@ public class App
         System.out.println("\nFlattened Sentence: " + words);
 
         // ------------------------------------------------
-
 
 
     }

@@ -1,6 +1,8 @@
 package com.example.model;
 
 
+import com.example.service.IdGenerator;
+
 /**
  * *******************************************************
  * Package: com.example
@@ -18,6 +20,7 @@ package com.example.model;
 public class Product {
 
     // Fields
+    private final String id;
     private final String name;
     private final String category;
     private final double price;
@@ -30,9 +33,19 @@ public class Product {
      * @param price    the price of the product
      */
     public Product(String name, String category, double price) {
+        this.id = IdGenerator.generateProductId();
         this.name = name;
         this.category = category;
         this.price = price;
+    }
+
+    /**
+     * Returns the id of the product.
+     *
+     * @return the product id
+     */
+    public String getId() {
+        return id;
     }
 
     /**
@@ -69,9 +82,11 @@ public class Product {
      */
     @Override
     public String toString() {
-        return "\n[" + "name='" + name + '\n' +
+        return "\n[" +
+                "id ='" + id + '\n' +
+                "name='" + name + '\n' +
                 "category='" + category + '\n' +
                 "price=" + price
-                +"]\n" ;
+                + "]\n";
     }
 }

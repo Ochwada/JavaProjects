@@ -20,6 +20,81 @@ import java.util.*;
 public class DummyData {
 
     /**
+     * Generates a sample list of authors, each with associated books and pages.
+     * <p>
+     * This dummy data includes 3 well-known authors: George Orwell, J.K. Rowling, and Stephen King.
+     * Each author has two books assigned, and each book contains a list of sample pages.
+     * <p>
+     * This method is primarily used for testing and demonstrating multi-level stream operations
+     * (e.g., using flatMap to extract books and pages from authors).
+     *
+     * @return a list of sample {@link Author} instances, each populated with books and pages.
+     */
+    public static List<Author> getSampleAuthors() {
+
+        // Authors (without books yet)
+        Author orwell = new Author("George Orwell", List.of());
+        Author rowling = new Author("J.K. Rowling", List.of());
+        Author king = new Author("Stephen King", List.of());
+
+
+        // Books linked to authors
+        // --- orwell
+        Book book1 = new Book("1984", orwell, "Dystopian", 4.8,
+                List.of(
+                        "1984 - Page 1",
+                        "1984 - Page 2",
+                        "1984 - Page 3"
+                ));
+
+        Book book2 = new Book("Animal Farm", orwell, "Political Satire", 4.6,
+                List.of(
+                        "Animal Farm - Page 1",
+                        "Animal Farm - Page 2",
+                        "Animal Farm - Page 3"
+                ));
+
+        // --- rowling
+        Book book3 = new Book("Harry Potter and the Sorcerer's Stone", rowling, "Fantasy", 4.9,
+                List.of(
+                        "HP1 - Page 1",
+                        "HP1 - Page 2",
+                        "HP1 - Page 3"
+                ));
+
+        Book book4 = new Book("Harry Potter and the Chamber of Secrets", rowling, "Fantasy", 4.8,
+                List.of(
+                        "HP2 - Page 1",
+                        "HP2 - Page 2",
+                        "HP2 - Page 3"
+                ));
+
+        // --- king
+        Book book5 = new Book("The Shining", king, "Horror", 4.7,
+                List.of(
+                        "Shining - Page 1",
+                        "Shining - Page 2",
+                        "Shining - Page 3"
+                ));
+
+        Book book6 = new Book("IT", king, "Horror", 4.5,
+                List.of(
+                        "IT - Page 1",
+                        "IT - Page 2",
+                        "IT - Page 3"
+                ));
+
+
+        // Attach books directly WHILE constructing authors
+        orwell = new Author(orwell.getNames(), List.of(book1, book2));
+        rowling = new Author(rowling.getNames(), List.of(book3, book4));
+        king = new Author(king.getNames(), List.of(book5, book6));
+
+        return List.of(orwell, rowling, king);
+    }
+
+
+    /**
      * Returns a sample list of sentences.
      * <p>
      * The sample data includes various example sentences to demonstrate stream processing

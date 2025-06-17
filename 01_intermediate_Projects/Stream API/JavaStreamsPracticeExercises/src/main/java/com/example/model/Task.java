@@ -1,6 +1,8 @@
 package com.example.model;
 
 
+import com.example.service.IdGenerator;
+
 /**
  * *******************************************************
  * Package: com.example
@@ -15,6 +17,7 @@ package com.example.model;
 
 public class Task {
     // Field
+    private final String id;
     private final String title;
     private final Status Status;
 
@@ -25,6 +28,7 @@ public class Task {
      * @param status the status of the task (e.g. "Pending", "In Progress", "Completed" )
      */
     public Task(String title, Status status) {
+        this.id = IdGenerator.generateTaskId();
         this.title = title;
         Status = status;
     }
@@ -50,6 +54,7 @@ public class Task {
     @Override
     public String toString() {
         return "Task{" +
+                "id='" + id + '\'' +
                 "title='" + title + '\'' +
                 ", Status=" + Status +
                 '}';
